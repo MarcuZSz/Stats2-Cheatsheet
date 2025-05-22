@@ -1,0 +1,411 @@
+\documentclass[10pt,a4paper,landscape]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[german]{babel}
+\usepackage[T1]{fontenc}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\usepackage{lmodern}
+\usepackage{fourier}
+\usepackage{array}
+\usepackage{array}
+\usepackage{multirow}
+\usepackage{xcolor}
+\usepackage{tcolorbox}
+\usepackage{titlesec}
+\usepackage{pdfpages}
+\usepackage{pgffor}
+
+
+\usepackage{multicol}
+\setlength{\columnsep}{0.5cm}
+
+\usepackage{extsizes}
+\newcommand{\setdocumentfont}{\fontsize{6}{8}\selectfont} 
+
+
+% Schriftgrößenänderung für Section-Titel
+\titleformat{\section}[block]{\normalfont\fontsize{8}{10}\bfseries\textcolor{red}}{\thesection}{1em}{}
+
+\titleformat{\subsection}[block]{\normalfont\fontsize{7}{9}\bfseries}{\thesubsection}{1em}{}
+
+\titleformat{\subsubsection}[block]{\normalfont\fontsize{6}{8}\bfseries}{\thesubsubsection}{1em}{}
+
+\usepackage[left=1cm,right=1.2cm,top=1cm,bottom=1cm]{geometry}
+
+\tcbset{
+  sectionbox/.style={
+    colframe=blue!50!black,
+    colback=blue!5,
+    coltitle=blue!20!black,
+    fonttitle=\bfseries,
+    boxrule=0.5mm,
+    rounded corners,
+    breakable,
+    width=\linewidth,
+  }
+}
+
+\pagestyle{empty}
+\title{shitSheat}
+\begin{document}
+\setdocumentfont
+\begin{multicols}{4}
+\noindent
+
+\subsection{Grundbegriffe}
+Grundgesamtheit, Population\\
+	(gesamte Gruppe, Bsp. Schüler einer Schule)
+
+\begin{enumerate}
+
+\item Umfang
+\begin{itemize}
+\item Stichprobe/Teilerhebung\\
+	(nur kleiner Teil der gesamten Gruppe untersucht)
+\end{itemize}
+
+\item Datenform
+
+\begin{itemize}
+\item Querrschnittsdaten\\
+	(Momentaufnahme einer Stichprobe)
+\item Zeitreihe\\
+	(quantitative Auswertung über einen Zeitverlauf)
+\item Längsschnittdaten\\
+	(Datenerhebung zu versch. Zeitpunkten)
+\end{itemize}
+
+\item Methoden operationaler Messungen
+
+\begin{itemize}
+\item Beobachtung:\\
+verdeckt oder teilnehmend; systematisch mit Beobachtungsprotokoll
+\item Befragung: \\
+mündlich mit/ohne Interviewer, schriftlich/online, Fragebogen
+\item Experiment: \\
+kontrollierte Situation, evtl. Erhebung durch Beobachtung oder Befragung
+\end{itemize}
+
+\end{enumerate}
+
+%=========================================================================================================================================================================================================================
+
+\section{Grundlagen: Wahrscheinlichkeit}
+
+\subsubsection*{Wichtiges zur Wahrscheinlichkeitsrechnung}
+\begin{itemize}
+\item $P(\cup _{i=1} ^{n}) = \sum_{i=1}^n P(A_i)$ für paarweise disjunkte Ereignisse $A_1, A_2, ~..., A_n \subset \Omega$
+\item $A \subseteq B \Rightarrow P(A) \leqslant P(B)$
+\item \(P (\overline{A}) = 1 - P(A)\)
+\item $P(A|\overline{B})= 1 - P(\overline{A} |\overline{B})$
+\item $P(\overline{B}\cap A)=P(A|\overline{B})\cdot P(\overline{B})$
+\item $P(A\cup B) = P(A) + P(B) -P(A\cap B)$ für beliebige A, B $\subset \Omega$
+\item $P(A \cup B) = P(A) + P(B)$ für disjunkte Ereignisse $A,B \subseteq \Omega$ (Additivität)
+\end{itemize}
+
+\subsection{Bedingte Wahrscheinlichkeiten}
+\[
+P(A|B) := \frac{P(A\cap B)}{P(B)}
+\]
+
+\subsubsection*{Satz der totalen Wahrscheinlichkeit}
+\[
+P(A)=\sum_{i=1}^n P(A|B_i) \cdot P(B_i)
+\]
+
+\subsubsection*{Wichtiger Spezialfall: Multiplikationssatz}
+\[
+P(A)=P(A|B)P(B)+P(A|\overline{B})P(\overline{B})
+\]
+
+\subsection{Stochastische Unabhängigkeit}
+\[
+P(A|B) = P(A) ~bzw.~ P(B|A)=P(B)
+\]
+\[
+P(A \cap B)=P(A) \cdot P(B)
+\]
+
+\subsection{Bedingte Unabhängigkeit}
+\[
+P(A \cap B|C)=P(A|C)\cdot P(B|C)
+\]
+
+\subsection{Satz von Bayes}
+\[ \resizebox{0.15\textwidth}{!}{$
+P(A|B)=\frac{P(A\cap B)}{P(B)} \Rightarrow P(A\cap B)=P(A|B)P(B)
+$}
+\]
+
+\[
+\Rightarrow P(A|B)P(B)=P(B|A)P(A)
+\]
+
+\subsection{Satz von Bayes II}
+\[ \resizebox{0.15\textwidth}{!}{$
+P(B|A)=\frac{P(A|B)P(B)}{P(A)}=\frac{P(A|B)P(B)}{P(A|B)P(B)+P(A|\overline{B})P(\overline{B})}
+$}
+\]
+\[ 
+P(B_i|A)=\frac{P(A|B_i)P(B_i)}{\sum_{j=1}^n P(A|B_j)P(B_j)}
+\]
+
+%=========================================================================================================================================================================================================================
+
+\section{Zusammenhangsmaße diskreter Merkmale}
+X = Zeilen \\
+Y = Spalten
+\subsection{Kontigenztafeln}
+\begin{itemize}
+\item Absolute Häufigkeit
+\[ \resizebox{0.1\textwidth}{!}{$
+\begin{array}{c|ccc|c}
+  & b_1 & \cdots & b_m & h_{1\cdot} \\
+\hline
+a_1 & h_{11} & \cdots & h_{1m} & h_{1\cdot} \\
+a_2 & h_{21} & \cdots & h_{2m} & h_{2\cdot} \\
+\vdots & \vdots & \ddots & \vdots & \vdots \\
+a_k & h_{k1} & \cdots & h_{km} & h_{k\cdot} \\
+\hline
+  & h_{\cdot 1} & \cdots & h_{\cdot m} & n
+\end{array}
+$}
+\]
+
+\item Relative Häufigkeiten
+\[ \resizebox{0.1\textwidth}{!}{$
+\begin{array}{c|ccc|c}
+  & b_1 & \cdots & b_m & h_{1\cdot} \\
+\hline
+a_1 & f_{11} & \cdots & f_{1m} & f_{1\cdot} \\
+a_2 & f_{21} & \cdots & f_{2m} & f_{2\cdot} \\
+\vdots & \vdots & \ddots & \vdots & \vdots \\
+a_k & f_{k1} & \cdots & f_{km} & f_{k\cdot} \\
+\hline
+  & f_{\cdot 1} & \cdots & f_{\cdot m} & 1
+\end{array}
+$}
+\]
+
+\end{itemize}
+
+\subsubsection*{Bedingte Häufigkeiten}
+
+\[
+f_{Y|X}(b_1|a_1)=\frac{h_{i1}}{h_{i\cdot}},~...,~ f_{Y|X}(b_m|a_i)=\frac{h_{im}}{h{i\cdot}}
+\]
+
+\[
+f_{X|Y}(a_1|b_1)=\frac{h_{1j}}{h_{\cdot j}},~...,~ f_{X|Y}(a_k|b_j)=\frac{h_{kj}}{h{\cdot j}}
+\]
+
+\subsection{Empirische Unabhängigkeit}
+\[ \resizebox{0.2\textwidth}{!}{$
+f_{Y|X}(b_j|a_1)=f_Y(b_j|a_2)=...=f_{Y|X}(b_j|a_k)\forall j=1,...,m
+$}
+\]
+oder halt:
+\[
+\forall i,j: ~ h_{ij}=\tilde{h}_{ij}
+\]
+
+\subsection{$\chi^2$- und Kontigenzkoeffizient}
+
+\subsubsection*{Berechnung von $\tilde{h}$}
+ist erwartete Häufigkeit in einer Kontingenztafel
+\[
+\text{mit}~~ \tilde{h}_{ij}=\frac{h_{i\cdot}h_{\cdot j}}{n}
+\]
+
+\subsubsection*{$\chi^2$-Koeffizient}
+
+{\tiny
+\begin{align*}
+\chi^2 := \sum_{i=1}^k \sum_{j=1}^m \frac{(h_{ij}-\tilde{h}_{ij})^2}{\tilde{h}_{ij}}&=\sum_{i=1}^k \sum_{j=1}^m \frac{(h_{ij}-\frac{h_{i\cdot}h_{\cdot j}}{n})^2}{\frac{h_{i\cdot}h_{\cdot j}}{n}} \\
+&=  n\sum_{i} \sum_{j}\frac{(f_{ij}-f_{i\cdot}f_{\cdot j})^2}{f_{i\cdot}f_{\cdot j}} \\
+\text{mit}~~ \tilde{h}_{ij}=\frac{h_{i\cdot}h_{\cdot j}}{n}
+\end{align*}
+}
+
+\begin{itemize}
+\item $\chi^2 \in [0, n(min(k,m)-1)]$
+\item $\chi^2=0 \Leftrightarrow$ X und Y empirisch unabhängig
+\item $\chi^2$ groß, starker Zusammenhang
+\item $\chi^2$ klein, schwacher Zusammenhang
+\end{itemize}
+
+\subsubsection*{Spezialfall für 2x2-Tafel}
+\[ \resizebox{0.09\textwidth}{!}{$
+\begin{array}{|cc|c|}
+\hline
+a & b & a+b \\
+c & d & c+d \\
+\hline
+a+c & b+d & \\
+\hline
+\end{array}
+$}
+\]
+
+\[
+\chi^2 = \frac{n(ad-bc)^2}{(a+b)(a+c)(b+d)(c+d)}
+\]
+
+\subsubsection*{Kontigenzkoeffizient}
+\[ \resizebox{0.15\textwidth}{!}{$
+K := \sqrt{\frac{\chi^2}{n+\chi^2}}, ~K \in \left[0, \sqrt{\frac{M-1}{M}}\right],~ M=min\{k, m\}
+$}
+\]
+
+\subsubsection*{Korrigierter Koeffizient}
+\[
+K^* := \frac{K}{\sqrt{(M-1)/M}}, ~ K^* \in [0, 1]
+\]
+
+%=========================================================================================================================================================================================================================
+
+\section{ZVs, Verteilungen und Häufigkeiten}
+
+\subsection{Zufallsvariable}
+\[
+X:\Omega \rightarrow T_X , ~ T_X\subseteq \mathbb{R}
+\]
+
+\begin{itemize}
+\item ordnet jedem $\omega \in \Omega$ genau ein $x \in T_X$ zu: $X(\omega)=x$
+\item Mehrere Elementarereignisse können selben Zahlenwert zugeordnet sein
+\item Ausprägungen/Relisierungen: $x=X(\omega)$ von X
+\end{itemize}
+
+\subsection{Diskreter Erwartungswert}
+\begin{align*}
+E(X) :&=\sum_{x\in T_X} x\cdot P(X=x) = \sum_{\omega \in \Omega} P(\{\omega\})X(\omega) \\
+&= \sum_{x\in T_X} x\cdot f_X(x)
+\end{align*}
+
+\subsection{Stetiger Erwartungswert}
+\[
+E(X) := \int_{-\infty}^{\infty} x\cdot f_X(x)dx
+\]
+
+\subsection{Eigenschaften Erwartungswert}
+\begin{itemize}
+\item X=a mit Wahrscheinlichkeit 1 (determinische ZV)
+\[
+E(X)=a
+\]
+\item Linearität
+\begin{align*}
+E(a\cdot X + b \cdot Y) &= a\cdot E(X) + b \cdot	E(Y) \\
+E(aX+b) &= a\cdot E(X) + b
+\end{align*}
+\item symmetrisch um Punkt c: $f(c-x)=f(c+x) \forall x \in T_X$, dann $E(X)=c$
+\item für bel. $a_1,...,a_n \in \mathbb{R}$ und bel. ZV $X_1,...,X_n$
+\[
+E\left(\sum_{i=1}^na_iX_i\right)=\sum_{i=1}^na_i \cdot E(X_i)
+\]
+\end{itemize}
+
+\subsection{Transformationsregel Erwartungswert}
+Für reelle Funktion Y=g(X):
+\begin{align*}
+E(Y)=E[g(X)]=\begin{cases}
+\sum_{x\in T}g(x)f(x) &\text{X diskret} \\
+\int_{-\infty}^{\infty}g(x)f(x)dx &\text{X stetig}
+\end{cases}
+\end{align*}
+
+\subsection{Varianz ZV}
+\begin{align*}
+Var(X) :&= E[(X-E(X))^2] \\
+&= \begin{cases}
+\sum_{x \in T_X}(x-E(X))^2f_X(X), &~\text{X diskret} \\
+\int_{-\infty}^{\infty}(x-E(X))^2f_X(x)dx, &~\text{X stetig}
+\end{cases}
+\end{align*}
+
+\subsection*{Eigenschaften Varianz}
+\begin{itemize}
+\item Einfachere Berechnung mit Varianz:
+\[
+Var(X)=E(X^2)-(E(X))^2
+\]
+\item $Var(aX+b)=a^2Var(X) \forall a,b \in \mathbb{R}$
+\item unabhängige ZV X, Y: $Var(X+Y)=Var(X)+Var(Y)$
+\end{itemize}
+
+%=========================================================================================================================================================================================================================
+
+\section{Wichtige parametrische Verteilungen}
+
+\subsubsection{Binomialverteilung}
+Modelliert Anzahl Erfolge mit fester Anzahl Versuchen
+\[
+P(X=x)=f(x)=\binom{n}{k} \cdot \pi^x(1-\pi)^{n-x}, ~ x \in T 
+\]
+\[
+X \sim \mathcal{B}(n, \pi), ~ n \in \mathbb{N}, ~\pi \in [0,1]
+\]
+
+\subsubsection{Normalverteilung}
+modelliert kontinuierliche Werte um Mittelwert mit sym. Verteilung (Körpergröße, Gewicht) \\
+Träger $T=\mathbb{R}$ mit Parametern $\mu \in \mathbb{R}, \sigma^2 \in \mathbb{R}_+$
+\[
+f(x)=\frac{1}{\sqrt{2 \pi \sigma^2}}exp\left(-\frac{1}{2}\frac{(x-\mu)^2}{\sigma^2}\right), x\in \mathbb{R}
+\]
+$\mu = 0$ und $\sigma^2 = 1$ ist standardnormalverteilt.
+\[
+X \sim \mathcal{N}(\mu , \sigma^2)
+\]
+
+\begin{itemize}
+\item Verschieben und skalieren
+\[
+X \sim \mathcal{N}(\mu , \sigma^2) \Rightarrow (a+bX) \sim \mathcal{N}(a+b\mu ,b^2 \sigma^2)
+\]
+\item Summen und Differezen
+\[
+X_i \sim \mathcal{N}(\mu_i , \sigma^2_i) \Rightarrow \sum_i X_i \sim \mathcal{N}(\sum_i \mu_i , \sum_i \sigma^2_i)
+\]
+\item Integral der Normalverteilungsdichte nicht analytisch machbar
+\end{itemize}
+
+%=========================================================================================================================================================================================================================
+
+\section{Schätzung und Grenzwertsätze}
+
+\subsection{Standadisierte ZV}
+\begin{align*}
+\tilde{X} &= \frac{X- \mu_X}{\sigma_X} \\
+E(\tilde{X}) &= (E(X)-\mu_X)=0 \\
+Var(\tilde{X})&=\frac{1}{\sigma^2_X}Var(X) = 1
+\end{align*}
+
+\subsection{Standadisierung summierter ZVn}
+\begin{align*}
+E(Y_n) = n \cdot \mu_X, ~ Var(Y_n)= n \cdot \sigma_X^2 \\
+Z_n = \frac{Y_n - n\mu_X}{\sqrt{n}\sigma_X}=\frac{1}{\sqrt{n}}\sum_{i=1}^n \frac{X_i-\mu_X}{\sigma_X}
+\end{align*}
+
+\subsection{Zentraler Grenzwertsatz}
+\[
+F_n(z) \xrightarrow{n \to \infty} F_{N(0,1)}(z) ~ \forall z \in \mathcal{R}
+\]
+\[
+Z_n \sim \mathcal{N}(\mu = 0, \sigma^2 = 1) ~ \text{a :$\cong$ asymptotisch}
+\]
+
+Standadisierung:
+\[
+Y_n \sim \mathcal{N}(\mu = n\mu_X, \sigma^2= n \sigma_X^2)
+\]
+
+Speziell:
+\[
+\overline{X}_n \sim \mathcal{N}(\mu = \mu_X, \sigma^2=\frac{\sigma_X^2}{n}
+\]
+
+\end{multicols}
+\end{document} 
