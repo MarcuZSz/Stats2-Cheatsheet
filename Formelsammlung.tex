@@ -54,7 +54,7 @@
 \begin{multicols}{4}
 \noindent
 
-\subsection{Grundbegriffe}
+\section{Grundbegriffe}
 Grundgesamtheit, Population\\
 	(gesamte Gruppe, Bsp. Schüler einer Schule)
 
@@ -64,28 +64,6 @@ Grundgesamtheit, Population\\
 \begin{itemize}
 \item Stichprobe/Teilerhebung\\
 	(nur kleiner Teil der gesamten Gruppe untersucht)
-\end{itemize}
-
-\item Datenform
-
-\begin{itemize}
-\item Querrschnittsdaten\\
-	(Momentaufnahme einer Stichprobe)
-\item Zeitreihe\\
-	(quantitative Auswertung über einen Zeitverlauf)
-\item Längsschnittdaten\\
-	(Datenerhebung zu versch. Zeitpunkten)
-\end{itemize}
-
-\item Methoden operationaler Messungen
-
-\begin{itemize}
-\item Beobachtung:\\
-verdeckt oder teilnehmend; systematisch mit Beobachtungsprotokoll
-\item Befragung: \\
-mündlich mit/ohne Interviewer, schriftlich/online, Fragebogen
-\item Experiment: \\
-kontrollierte Situation, evtl. Erhebung durch Beobachtung oder Befragung
 \end{itemize}
 
 \end{enumerate}
@@ -159,36 +137,8 @@ X = Zeilen \\
 Y = Spalten
 \subsection{Kontigenztafeln}
 \begin{itemize}
-\item Absolute Häufigkeit
-\[ \resizebox{0.1\textwidth}{!}{$
-\begin{array}{c|ccc|c}
-  & b_1 & \cdots & b_m & h_{1\cdot} \\
-\hline
-a_1 & h_{11} & \cdots & h_{1m} & h_{1\cdot} \\
-a_2 & h_{21} & \cdots & h_{2m} & h_{2\cdot} \\
-\vdots & \vdots & \ddots & \vdots & \vdots \\
-a_k & h_{k1} & \cdots & h_{km} & h_{k\cdot} \\
-\hline
-  & h_{\cdot 1} & \cdots & h_{\cdot m} & n
-\end{array}
-$}
-\]
-
-\item Relative Häufigkeiten
-\[ \resizebox{0.1\textwidth}{!}{$
-\begin{array}{c|ccc|c}
-  & b_1 & \cdots & b_m & h_{1\cdot} \\
-\hline
-a_1 & f_{11} & \cdots & f_{1m} & f_{1\cdot} \\
-a_2 & f_{21} & \cdots & f_{2m} & f_{2\cdot} \\
-\vdots & \vdots & \ddots & \vdots & \vdots \\
-a_k & f_{k1} & \cdots & f_{km} & f_{k\cdot} \\
-\hline
-  & f_{\cdot 1} & \cdots & f_{\cdot m} & 1
-\end{array}
-$}
-\]
-
+\item Absolute Häufigkeit: n = n
+\item Relative Häufigkeiten: n = 1
 \end{itemize}
 
 \subsubsection*{Bedingte Häufigkeiten}
@@ -285,11 +235,6 @@ E(X) :&=\sum_{x\in T_X} x\cdot P(X=x) = \sum_{\omega \in \Omega} P(\{\omega\})X(
 &= \sum_{x\in T_X} x\cdot f_X(x)
 \end{align*}
 
-\subsection{Stetiger Erwartungswert}
-\[
-E(X) := \int_{-\infty}^{\infty} x\cdot f_X(x)dx
-\]
-
 \subsection{Eigenschaften Erwartungswert}
 \begin{itemize}
 \item X=a mit Wahrscheinlichkeit 1 (determinische ZV)
@@ -318,13 +263,10 @@ E(Y)=E[g(X)]=\begin{cases}
 \end{align*}
 
 \subsection{Varianz ZV}
-\begin{align*}
-Var(X) :&= E[(X-E(X))^2] \\
-&= \begin{cases}
-\sum_{x \in T_X}(x-E(X))^2f_X(X), &~\text{X diskret} \\
-\int_{-\infty}^{\infty}(x-E(X))^2f_X(x)dx, &~\text{X stetig}
-\end{cases}
-\end{align*}
+anstatt $Var(X)$ geht auch $\sigma^2$
+\[
+Var(X) = \sum_{i=1}^n (x_i - E(X))^2P(X=x_i)
+\]
 
 \subsection*{Eigenschaften Varianz}
 \begin{itemize}
@@ -336,17 +278,45 @@ Var(X)=E(X^2)-(E(X))^2
 \item unabhängige ZV X, Y: $Var(X+Y)=Var(X)+Var(Y)$
 \end{itemize}
 
+\subsection{Standardabweichung}
+\[
+\sigma = + \sqrt{Var(X)}
+\]
+
 %=========================================================================================================================================================================================================================
 
 \section{Wichtige parametrische Verteilungen}
 
 \subsubsection{Binomialverteilung}
-Modelliert Anzahl Erfolge mit fester Anzahl Versuchen
+Modelliert Anzahl Erfolge mit fester Anzahl Versuchen\\
+$E(X)=np$ und $Var(X)=np(1-p)$
 \[
-P(X=x)=f(x)=\binom{n}{k} \cdot \pi^x(1-\pi)^{n-x}, ~ x \in T 
+P(X=x)=f(x)=\binom{n}{k} \cdot p^k(1-p)^{n-k}, ~ k \in T 
 \]
 \[
-X \sim \mathcal{B}(n, \pi), ~ n \in \mathbb{N}, ~\pi \in [0,1]
+X \sim \mathcal{B}(n, p), ~ n \in \mathbb{N}, ~p \in [0,1]
+\]
+
+\subsubsection{Negative Binomialverteilung}
+Verwendung: Wartezeiten/Misserfolge; "alle Fehlerfolge vor Erfolgen" \\
+$T_X=\{n, n+1, n+2, ...\}$ mit $n \in \mathbb{N}^+, \pi \in (0,1)$
+\[\resizebox{0.2\textwidth}{!}{$
+f(x)=\binom{x-1}{n-1}\pi ^n(1-\pi)^{x-n}|(x \geq n), \pi \in (0,1), T_X=\{n, n+1, ...\} ~ n \in \mathbb{N}^+
+$}
+\]
+\[
+X \sim \mathcal{NB}(n, \pi)
+\]
+
+\subsubsection{Geometrische Verteilung}
+Modelliert Anzahl Versuche bis A zum erster Erfolg eintritt\\
+$E(X)=\frac{1}{p}$ und $Var(X)=\frac{1-p}{p^2}$
+\[
+f(x)= \underbrace{(1 - p)^{x-1}}_{\text{(x-1)-mal } \overline{A}}
+ \cdot \underbrace{p}_{\text{1-Mal A}}|(x \in T), p \in (0,1)
+\]
+\[
+X \sim \mathcal{G}(p)
 \]
 
 \subsubsection{Normalverteilung}
@@ -360,23 +330,25 @@ $\mu = 0$ und $\sigma^2 = 1$ ist standardnormalverteilt.
 X \sim \mathcal{N}(\mu , \sigma^2)
 \]
 
-\begin{itemize}
-\item Verschieben und skalieren
+\subsubsection{Poisson-Verteilung}
+Modelliert Anzahl Ereignisse mit festen Zeit/Raumbereich $\rightarrow$ konstante Rate, unabhängig (Anzahl Anrufe Callcenter)
 \[
-X \sim \mathcal{N}(\mu , \sigma^2) \Rightarrow (a+bX) \sim \mathcal{N}(a+b\mu ,b^2 \sigma^2)
+f(x)=exp(-\lambda)\frac{\lambda^x}{x!}|(x \in T), t= \mathbb{N^+}
 \]
-\item Summen und Differezen
 \[
-X_i \sim \mathcal{N}(\mu_i , \sigma^2_i) \Rightarrow \sum_i X_i \sim \mathcal{N}(\sum_i \mu_i , \sum_i \sigma^2_i)
+X \sim \mathcal{P}(\lambda)
 \]
-\item Integral der Normalverteilungsdichte nicht analytisch machbar
-\end{itemize}
+
+Approximation:
+\[
+\mathcal{B}(n, \pi) \approx \mathcal{P}(\lambda =n\pi)
+\]
 
 %=========================================================================================================================================================================================================================
 
 \section{Schätzung und Grenzwertsätze}
 
-\subsection{Standadisierte ZV}
+\subsection{Standadisierte ZV/Z-Score}
 \begin{align*}
 \tilde{X} &= \frac{X- \mu_X}{\sigma_X} \\
 E(\tilde{X}) &= (E(X)-\mu_X)=0 \\
@@ -391,20 +363,27 @@ Z_n = \frac{Y_n - n\mu_X}{\sqrt{n}\sigma_X}=\frac{1}{\sqrt{n}}\sum_{i=1}^n \frac
 
 \subsection{Zentraler Grenzwertsatz}
 \[
-F_n(z) \xrightarrow{n \to \infty} F_{N(0,1)}(z) ~ \forall z \in \mathcal{R}
+\mu_{\hat{p}}=p, ~SE_{\hat{p}}=\sqrt{\frac{p(1-p)}{n}}
 \]
 \[
 Z_n \sim \mathcal{N}(\mu = 0, \sigma^2 = 1) ~ \text{a :$\cong$ asymptotisch}
 \]
 
-Standadisierung:
+Nett to know:
 \[
-Y_n \sim \mathcal{N}(\mu = n\mu_X, \sigma^2= n \sigma_X^2)
+\mu_x = \mu, ~ \sigma_x = \frac{\sigma}{\sqrt{n}}
 \]
 
-Speziell:
+\subsection{Punktschätzung}
+\begin{enumerate}
+\item Z-Score/Standadisieren
+\item Tabellenwerk
+\item Tabellenwert-(1-Tabellenwert)
+\end{enumerate}
+
+\subsection{Intervallschätzung}
 \[
-\overline{X}_n \sim \mathcal{N}(\mu = \mu_X, \sigma^2=\frac{\sigma_X^2}{n}
+\hat{p} \pm 1.96 \cdot SE_{\hat{p}}
 \]
 
 \end{multicols}
