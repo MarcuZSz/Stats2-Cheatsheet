@@ -350,7 +350,7 @@ Approximation:
 
 \subsection{Standadisierte ZV/Z-Score}
 \begin{align*}
-\tilde{X} &= \frac{X- \mu_X}{\sigma_X} \\
+Z &= \frac{X- \mu_X}{\sigma_X} \\
 E(\tilde{X}) &= (E(X)-\mu_X)=0 \\
 Var(\tilde{X})&=\frac{1}{\sigma^2_X}Var(X) = 1
 \end{align*}
@@ -385,6 +385,22 @@ Nett to know:
 \[
 \hat{p} \pm 1.96 \cdot SE_{\hat{p}}
 \]
+
+\subsection{Hypothesentest}
+\[
+H_0 : p = x, H_A: p \neq x
+\]
+
+\subsection{t-Verteilung}
+Inferenz für numerische Variablen, bei Stichproben $n < 30$
+
+\begin{itemize}
+\item Unterschiede berechnen, wenn nicht gegeben: $\bar{x} = \bar{x}_A - \bar{x}_b$
+\item Standardfehler: $SE = \frac{s}{\sqrt{n}}$
+\item Standardfehler bei Gruppenunterscheidung: $SE = \sqrt{\frac{s_A^2}{n_A} + \frac{s_B^2}{n_B}}$
+\item Teststatistik: $T = \frac{\bar{x} - \text{null value}}{SE}$
+\item Freiheitsgrad (immer kleineres n, z.B. $n_A < n_B$): $df = n - 1$
+\end{itemize}
 
 \end{multicols}
 \end{document} 
