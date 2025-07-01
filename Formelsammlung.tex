@@ -161,59 +161,6 @@ oder halt:
 \forall i,j: ~ h_{ij}=\tilde{h}_{ij}
 \]
 
-\subsection{$\chi^2$- und Kontigenzkoeffizient}
-
-\subsubsection*{Berechnung von $\tilde{h}$}
-ist erwartete Häufigkeit in einer Kontingenztafel
-\[
-\text{mit}~~ \tilde{h}_{ij}=\frac{h_{i\cdot}h_{\cdot j}}{n}
-\]
-
-\subsubsection*{$\chi^2$-Koeffizient}
-
-{\tiny
-\begin{align*}
-\chi^2 := \sum_{i=1}^k \sum_{j=1}^m \frac{(h_{ij}-\tilde{h}_{ij})^2}{\tilde{h}_{ij}}&=\sum_{i=1}^k \sum_{j=1}^m \frac{(h_{ij}-\frac{h_{i\cdot}h_{\cdot j}}{n})^2}{\frac{h_{i\cdot}h_{\cdot j}}{n}} \\
-&=  n\sum_{i} \sum_{j}\frac{(f_{ij}-f_{i\cdot}f_{\cdot j})^2}{f_{i\cdot}f_{\cdot j}} \\
-\text{mit}~~ \tilde{h}_{ij}=\frac{h_{i\cdot}h_{\cdot j}}{n}
-\end{align*}
-}
-
-\begin{itemize}
-\item $\chi^2 \in [0, n(min(k,m)-1)]$
-\item $\chi^2=0 \Leftrightarrow$ X und Y empirisch unabhängig
-\item $\chi^2$ groß, starker Zusammenhang
-\item $\chi^2$ klein, schwacher Zusammenhang
-\end{itemize}
-
-\subsubsection*{Spezialfall für 2x2-Tafel}
-\[ \resizebox{0.09\textwidth}{!}{$
-\begin{array}{|cc|c|}
-\hline
-a & b & a+b \\
-c & d & c+d \\
-\hline
-a+c & b+d & \\
-\hline
-\end{array}
-$}
-\]
-
-\[
-\chi^2 = \frac{n(ad-bc)^2}{(a+b)(a+c)(b+d)(c+d)}
-\]
-
-\subsubsection*{Kontigenzkoeffizient}
-\[ \resizebox{0.15\textwidth}{!}{$
-K := \sqrt{\frac{\chi^2}{n+\chi^2}}, ~K \in \left[0, \sqrt{\frac{M-1}{M}}\right],~ M=min\{k, m\}
-$}
-\]
-
-\subsubsection*{Korrigierter Koeffizient}
-\[
-K^* := \frac{K}{\sqrt{(M-1)/M}}, ~ K^* \in [0, 1]
-\]
-
 %=========================================================================================================================================================================================================================
 
 \section{ZVs, Verteilungen und Häufigkeiten}
@@ -349,6 +296,7 @@ Approximation:
 \section{Schätzung und Grenzwertsätze}
 
 \subsection{Standadisierte ZV/Z-Score}
+Prüfe Normalverteilungsapprox. $\geq$ 10
 \begin{align*}
 Z &= \frac{X- \mu_X}{\sigma_X} \\
 E(\tilde{X}) &= (E(X)-\mu_X)=0 \\
@@ -401,6 +349,12 @@ Inferenz für numerische Variablen, bei Stichproben $n < 30$
 \item Teststatistik: $T = \frac{\bar{x} - \text{null value}}{SE}$
 \item Freiheitsgrad (immer kleineres n, z.B. $n_A < n_B$): $df = n - 1$
 \end{itemize}
+
+\subsection{Chi-Quadrat-Test}
+\[\resizebox{0.25\textwidth}{!}{$
+\chi^2 = \sum \frac{(\text{observed count}_i-\text{null count}_i)^2}{\text{null count}_i} = \sum Z_i, ~\text{mit } Z_i = \frac{\text{observed} - \text{expected counts}}{\sqrt{\text{expected counts}}}
+$}
+\]
 
 \end{multicols}
 \end{document} 
