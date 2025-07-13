@@ -17,7 +17,6 @@
 \usepackage{pdfpages}
 \usepackage{pgffor}
 
-
 \usepackage{multicol}
 \setlength{\columnsep}{0.5cm}
 
@@ -55,18 +54,15 @@
 \noindent
 
 \section{Grundbegriffe}
-Grundgesamtheit, Population\\
-	(gesamte Gruppe, Bsp. Schüler einer Schule)
 
-\begin{enumerate}
-
-\item Umfang
 \begin{itemize}
+\item Grundgesamtheit, Population\\
+	(gesamte Gruppe, Bsp. Schüler einer Schule)
 \item Stichprobe/Teilerhebung\\
 	(nur kleiner Teil der gesamten Gruppe untersucht)
 \end{itemize}
 
-\end{enumerate}
+
 
 %=========================================================================================================================================================================================================================
 
@@ -200,15 +196,6 @@ E\left(\sum_{i=1}^na_iX_i\right)=\sum_{i=1}^na_i \cdot E(X_i)
 \]
 \end{itemize}
 
-\subsection{Transformationsregel Erwartungswert}
-Für reelle Funktion Y=g(X):
-\begin{align*}
-E(Y)=E[g(X)]=\begin{cases}
-\sum_{x\in T}g(x)f(x) &\text{X diskret} \\
-\int_{-\infty}^{\infty}g(x)f(x)dx &\text{X stetig}
-\end{cases}
-\end{align*}
-
 \subsection{Varianz ZV}
 anstatt $Var(X)$ geht auch $\sigma^2$
 \[
@@ -234,39 +221,32 @@ Var(X)=E(X^2)-(E(X))^2
 
 \section{Wichtige parametrische Verteilungen}
 
-\subsubsection{Binomialverteilung}
+\subsection{Binomialverteilung}
 Modelliert Anzahl Erfolge mit fester Anzahl Versuchen\\
-$E(X)=np$ und $Var(X)=np(1-p)$
+$E(X)|\mu=np$ und $Var(X)|\sigma^2=np(1-p)$
 \[
-P(X=x)=f(x)=\binom{n}{k} \cdot p^k(1-p)^{n-k}, ~ k \in T 
-\]
-\[
-X \sim \mathcal{B}(n, p), ~ n \in \mathbb{N}, ~p \in [0,1]
+P(X=x)=f(x)=\binom{n}{k} \cdot p^k(1-p)^{n-k}
 \]
 
-\subsubsection{Negative Binomialverteilung}
+
+\subsection{Negative Binomialverteilung}
 Verwendung: Wartezeiten/Misserfolge; "alle Fehlerfolge vor Erfolgen" \\
-$T_X=\{n, n+1, n+2, ...\}$ mit $n \in \mathbb{N}^+, \pi \in (0,1)$
+$E(X)|\mu=\frac{k}{p}$ und $Var(X)|\sigma^2=\frac{k(1-p)}{p^2}$
 \[\resizebox{0.2\textwidth}{!}{$
-f(x)=\binom{x-1}{n-1}\pi ^n(1-\pi)^{x-n}|(x \geq n), \pi \in (0,1), T_X=\{n, n+1, ...\} ~ n \in \mathbb{N}^+
+f(x)=\binom{n-1}{k-1}p ^k(1-p)^{n-k}|(n \geq k), p \in (0,1)
 $}
 \]
-\[
-X \sim \mathcal{NB}(n, \pi)
-\]
 
-\subsubsection{Geometrische Verteilung}
+
+\subsection{Geometrische Verteilung}
 Modelliert Anzahl Versuche bis A zum erster Erfolg eintritt\\
-$E(X)=\frac{1}{p}$ und $Var(X)=\frac{1-p}{p^2}$
+$E(X)|\mu=\frac{1}{p}$ und $Var(X)|\sigma^2=\frac{1-p}{p^2}$
 \[
-f(x)= \underbrace{(1 - p)^{x-1}}_{\text{(x-1)-mal } \overline{A}}
- \cdot \underbrace{p}_{\text{1-Mal A}}|(x \in T), p \in (0,1)
-\]
-\[
-X \sim \mathcal{G}(p)
+f(x)= \underbrace{(1 - p)^{n-1}}_{\text{(n-1)-mal } \overline{A}}
+ \cdot \underbrace{p}_{\text{1-Mal A}}, p \in (0,1)
 \]
 
-\subsubsection{Normalverteilung}
+\subsection{Normalverteilung}
 modelliert kontinuierliche Werte um Mittelwert mit sym. Verteilung (Körpergröße, Gewicht) \\
 Träger $T=\mathbb{R}$ mit Parametern $\mu \in \mathbb{R}, \sigma^2 \in \mathbb{R}_+$
 \[
@@ -277,18 +257,13 @@ $\mu = 0$ und $\sigma^2 = 1$ ist standardnormalverteilt.
 X \sim \mathcal{N}(\mu , \sigma^2)
 \]
 
-\subsubsection{Poisson-Verteilung}
+\subsection{Poisson-Verteilung}
 Modelliert Anzahl Ereignisse mit festen Zeit/Raumbereich $\rightarrow$ konstante Rate, unabhängig (Anzahl Anrufe Callcenter)
 \[
-f(x)=exp(-\lambda)\frac{\lambda^x}{x!}|(x \in T), t= \mathbb{N^+}
+f(x)=exp(-\lambda)\frac{\lambda^k}{k!}
 \]
 \[
 X \sim \mathcal{P}(\lambda)
-\]
-
-Approximation:
-\[
-\mathcal{B}(n, \pi) \approx \mathcal{P}(\lambda =n\pi)
 \]
 
 %=========================================================================================================================================================================================================================
@@ -342,19 +317,32 @@ H_0 : p = x, H_A: p \neq x
 \subsection{t-Verteilung}
 Inferenz für numerische Variablen, bei Stichproben $n < 30$
 
-\begin{itemize}
+\begin{enumerate}
 \item Unterschiede berechnen, wenn nicht gegeben: $\bar{x} = \bar{x}_A - \bar{x}_b$
 \item Standardfehler: $SE = \frac{s}{\sqrt{n}}$
 \item Standardfehler bei Gruppenunterscheidung: $SE = \sqrt{\frac{s_A^2}{n_A} + \frac{s_B^2}{n_B}}$
 \item Teststatistik: $T = \frac{\bar{x} - \text{null value}}{SE}$
 \item Freiheitsgrad (immer kleineres n, z.B. $n_A < n_B$): $df = n - 1$
-\end{itemize}
+\end{enumerate}
 
 \subsection{Chi-Quadrat-Test}
 \[\resizebox{0.25\textwidth}{!}{$
 \chi^2 = \sum \frac{(\text{observed count}_i-\text{null count}_i)^2}{\text{null count}_i} = \sum Z_i, ~\text{mit } Z_i = \frac{\text{observed} - \text{expected counts}}{\sqrt{\text{expected counts}}}
 $}
 \]
+
+\subsection{Inferenz}
+\begin{enumerate}
+\item $H_0: \beta_1=0$ zugunsten $H_A: \beta_1 \neq 0$ ablehnen
+\item $\hat{y}= \text{Intercept} + \text{Steigung}x$
+\item $T = \frac{\text{estimate} - \text{null value}}{\text{SE}}$
+\end{enumerate}
+
+%=========================================================================================================================================================================================================================
+
+\section{Entscheidungshilfe}
+\includegraphics[scale=0.25]{Bilder/1.png} 
+\includegraphics[scale=0.25]{Bilder/2.png} 
 
 \end{multicols}
 \end{document} 
