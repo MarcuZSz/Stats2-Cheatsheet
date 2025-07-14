@@ -157,28 +157,19 @@ oder halt:
 \forall i,j: ~ h_{ij}=\tilde{h}_{ij}
 \]
 
+\[
+\tilde{h}_{ij}=\frac{h_{i \cdot} h_{\cdot j}}{n}
+\]
+
 %=========================================================================================================================================================================================================================
 
 \section{ZVs, Verteilungen und Häufigkeiten}
 
-\subsection{Zufallsvariable}
-\[
-X:\Omega \rightarrow T_X , ~ T_X\subseteq \mathbb{R}
-\]
-
-\begin{itemize}
-\item ordnet jedem $\omega \in \Omega$ genau ein $x \in T_X$ zu: $X(\omega)=x$
-\item Mehrere Elementarereignisse können selben Zahlenwert zugeordnet sein
-\item Ausprägungen/Relisierungen: $x=X(\omega)$ von X
-\end{itemize}
-
-\subsection{Diskreter Erwartungswert}
+\subsection{Erwartungswert}
 \begin{align*}
-E(X) :&=\sum_{x\in T_X} x\cdot P(X=x) = \sum_{\omega \in \Omega} P(\{\omega\})X(\omega) \\
-&= \sum_{x\in T_X} x\cdot f_X(x)
+E(X) :&=\sum_{x\in T_X} x\cdot P(X=x)
 \end{align*}
 
-\subsection{Eigenschaften Erwartungswert}
 \begin{itemize}
 \item X=a mit Wahrscheinlichkeit 1 (determinische ZV)
 \[
@@ -202,7 +193,6 @@ anstatt $Var(X)$ geht auch $\sigma^2$
 Var(X) = \sum_{i=1}^n (x_i - E(X))^2P(X=x_i)
 \]
 
-\subsection*{Eigenschaften Varianz}
 \begin{itemize}
 \item Einfachere Berechnung mit Varianz:
 \[
@@ -225,15 +215,15 @@ Var(X)=E(X^2)-(E(X))^2
 Modelliert Anzahl Erfolge mit fester Anzahl Versuchen\\
 $E(X)|\mu=np$ und $Var(X)|\sigma^2=np(1-p)$
 \[
-P(X=x)=f(x)=\binom{n}{k} \cdot p^k(1-p)^{n-k}
+P(X=x)=f(p)=\binom{n}{k} \cdot p^k(1-p)^{n-k}
 \]
 
 
 \subsection{Negative Binomialverteilung}
-Verwendung: Wartezeiten/Misserfolge; "alle Fehlerfolge vor Erfolgen" \\
+Wartezeiten/Misserfolge; alle Fehlerfolge vor Erfolgen \\
 $E(X)|\mu=\frac{k}{p}$ und $Var(X)|\sigma^2=\frac{k(1-p)}{p^2}$
-\[\resizebox{0.2\textwidth}{!}{$
-f(x)=\binom{n-1}{k-1}p ^k(1-p)^{n-k}|(n \geq k), p \in (0,1)
+\[\resizebox{0.1\textwidth}{!}{$
+f(p)=\binom{n-1}{k-1}p ^k(1-p)^{n-k}
 $}
 \]
 
@@ -242,29 +232,25 @@ $}
 Modelliert Anzahl Versuche bis A zum erster Erfolg eintritt\\
 $E(X)|\mu=\frac{1}{p}$ und $Var(X)|\sigma^2=\frac{1-p}{p^2}$
 \[
-f(x)= \underbrace{(1 - p)^{n-1}}_{\text{(n-1)-mal } \overline{A}}
- \cdot \underbrace{p}_{\text{1-Mal A}}, p \in (0,1)
+f(p)= \underbrace{(1 - p)^{n-1}}_{\text{(n-1)-mal } \overline{A}}
+ \cdot \underbrace{p}_{\text{1-Mal A}}
 \]
 
 \subsection{Normalverteilung}
 modelliert kontinuierliche Werte um Mittelwert mit sym. Verteilung (Körpergröße, Gewicht) \\
-Träger $T=\mathbb{R}$ mit Parametern $\mu \in \mathbb{R}, \sigma^2 \in \mathbb{R}_+$
+
 \[
-f(x)=\frac{1}{\sqrt{2 \pi \sigma^2}}exp\left(-\frac{1}{2}\frac{(x-\mu)^2}{\sigma^2}\right), x\in \mathbb{R}
+f(x)=\frac{1}{\sqrt{2 \pi \sigma^2}}exp\left(-\frac{1}{2}\frac{(x-\mu)^2}{\sigma^2}\right)
 \]
 $\mu = 0$ und $\sigma^2 = 1$ ist standardnormalverteilt.
-\[
-X \sim \mathcal{N}(\mu , \sigma^2)
-\]
+
 
 \subsection{Poisson-Verteilung}
 Modelliert Anzahl Ereignisse mit festen Zeit/Raumbereich $\rightarrow$ konstante Rate, unabhängig (Anzahl Anrufe Callcenter)
 \[
-f(x)=exp(-\lambda)\frac{\lambda^k}{k!}
+f(k)=exp(-\lambda)\frac{\lambda^k}{k!}
 \]
-\[
-X \sim \mathcal{P}(\lambda)
-\]
+
 
 %=========================================================================================================================================================================================================================
 
