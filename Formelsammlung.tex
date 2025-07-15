@@ -259,23 +259,13 @@ f(k)=exp(-\lambda)\frac{\lambda^k}{k!}
 \subsection{Standadisierte ZV/Z-Score}
 Prüfe Normalverteilungsapprox. $\geq$ 10
 \begin{align*}
-Z &= \frac{X- \mu_X}{\sigma_X} \\
-E(\tilde{X}) &= (E(X)-\mu_X)=0 \\
-Var(\tilde{X})&=\frac{1}{\sigma^2_X}Var(X) = 1
+Z &= \frac{x - \mu}{\sigma} 
 \end{align*}
 
-\subsection{Standadisierung summierter ZVn}
-\begin{align*}
-E(Y_n) = n \cdot \mu_X, ~ Var(Y_n)= n \cdot \sigma_X^2 \\
-Z_n = \frac{Y_n - n\mu_X}{\sqrt{n}\sigma_X}=\frac{1}{\sqrt{n}}\sum_{i=1}^n \frac{X_i-\mu_X}{\sigma_X}
-\end{align*}
 
 \subsection{Zentraler Grenzwertsatz}
 \[
 \mu_{\hat{p}}=p, ~SE_{\hat{p}}=\sqrt{\frac{p(1-p)}{n}}
-\]
-\[
-Z_n \sim \mathcal{N}(\mu = 0, \sigma^2 = 1) ~ \text{a :$\cong$ asymptotisch}
 \]
 
 Nett to know:
@@ -298,6 +288,10 @@ Nett to know:
 \subsection{Hypothesentest}
 \[
 H_0 : p = x, H_A: p \neq x
+\]
+
+\[
+H_0 : \mu = x, H_A: \mu \neq x
 \]
 
 \subsection{t-Verteilung}
