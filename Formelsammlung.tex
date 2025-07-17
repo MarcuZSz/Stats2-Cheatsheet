@@ -210,27 +210,27 @@ Var(X)=E(X^2)-(E(X))^2
 
 \subsection{Binomialverteilung}
 Modelliert Anzahl Erfolge mit fester Anzahl Versuchen\\
-$E(X)|\mu=np$ und $Var(X)|\sigma^2=np(1-p)$
+$E(X)|\mu=n\pi$ und $Var(X)|\sigma^2=n\pi(1-\pi)$
 \[
-P(X=x)=f(p)=\binom{n}{k} \cdot p^k(1-p)^{n-k}
+P(X=x)=f(x)=\binom{n}{k} \cdot \pi^x(1-\pi)^{n-x}
 \]
 
 
 \subsection{Negative Binomialverteilung}
 Wartezeiten/Misserfolge; alle Fehlerfolge vor Erfolgen \\
-$E(X)|\mu=\frac{k}{p}$ und $Var(X)|\sigma^2=\frac{k(1-p)}{p^2}$
+$E(X)|\mu=\frac{x}{\pi}$ und $Var(X)|\sigma^2=\frac{x(1-\pi)}{\pi^2}$
 \[\resizebox{0.1\textwidth}{!}{$
-f(p)=\binom{n-1}{k-1}p ^k(1-p)^{n-k}
+f(x)=\binom{n-1}{k-1}\pi ^x(1-\pi)^{n-x}
 $}
 \]
 
 
 \subsection{Geometrische Verteilung}
 Modelliert Anzahl Versuche bis A zum erster Erfolg eintritt\\
-$E(X)|\mu=\frac{1}{p}$ und $Var(X)|\sigma^2=\frac{1-p}{p^2}$
+$E(X)|\mu=\frac{1}{\pi}$ und $Var(X)|\sigma^2=\frac{1-\pi}{\pi^2}$
 \[
-f(p)= \underbrace{(1 - p)^{n-1}}_{\text{(n-1)-mal } \overline{A}}
- \cdot \underbrace{p}_{\text{1-Mal A}}
+f(x)= \underbrace{(1 - \pi)^{x-1}}_{\text{(x-1)-mal } \overline{A}}
+ \cdot \underbrace{\pi}_{\text{1-Mal A}}
 \]
 
 \subsection{Normalverteilung}
@@ -245,7 +245,7 @@ $\mu = 0$ und $\sigma^2 = 1$ ist standardnormalverteilt.
 \subsection{Poisson-Verteilung}
 Modelliert Anzahl Ereignisse mit festen Zeit/Raumbereich $\rightarrow$ konstante Rate, unabhängig (Anzahl Anrufe Callcenter)
 \[
-f(k)=exp(-\lambda)\frac{\lambda^k}{k!}
+f(x)=exp(-\lambda)\frac{\lambda^x}{x!}
 \]
 
 
