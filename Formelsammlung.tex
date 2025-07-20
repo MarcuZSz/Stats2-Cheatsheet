@@ -77,6 +77,9 @@
 \item $P(\overline{B}\cap A)=P(A|\overline{B})\cdot P(\overline{B})$
 \item $P(A\cup B) = P(A) + P(B) -P(A\cap B)$ für beliebige A, B $\subset \Omega$
 \item $P(A \cup B) = P(A) + P(B)$ für disjunkte Ereignisse $A,B \subseteq \Omega$ (Additivität)
+\item Sensitivität: $TPR=P(B|A)$
+\item Spezifität: $TNR=P(\bar{B}|A)= 1- FPR$
+\item $FPR = P(B|\bar{A})$
 \end{itemize}
 
 \subsection{Bedingte Wahrscheinlichkeiten}
@@ -129,8 +132,7 @@ P(B_i|A)=\frac{P(A|B_i)P(B_i)}{\sum_{j=1}^n P(A|B_j)P(B_j)}
 %=========================================================================================================================================================================================================================
 
 \section{Zusammenhangsmaße diskreter Merkmale}
-X = Zeilen \\
-Y = Spalten
+
 \subsection{Kontigenztafeln}
 \begin{itemize}
 \item Absolute Häufigkeit: n = n
@@ -208,9 +210,17 @@ Var(X)=E(X^2)-(E(X))^2
 
 \section{Wichtige parametrische Verteilungen}
 
+\subsection{Bernoulli-Verteilung}
+Modelliert Experiment mit 2 mögl. Ausgängen
+
+\begin{align*}
+& P(X=1)=f(1) = \pi
+& P(X=0)=f(0) = 1 - \pi
+\end{align*}
+
 \subsection{Binomialverteilung}
 Modelliert Anzahl Erfolge mit fester Anzahl Versuchen\\
-$E(X)|\mu=n\pi$ und $Var(X)|\sigma^2=n\pi(1-\pi)$
+$E(X)=n\pi$ und $Var(X)=n\pi(1-\pi)$
 \[
 P(X=x)=f(x)=\binom{n}{k} \cdot \pi^x(1-\pi)^{n-x}
 \]
@@ -218,7 +228,7 @@ P(X=x)=f(x)=\binom{n}{k} \cdot \pi^x(1-\pi)^{n-x}
 
 \subsection{Negative Binomialverteilung}
 Wartezeiten/Misserfolge; alle Fehlerfolge vor Erfolgen \\
-$E(X)|\mu=\frac{x}{\pi}$ und $Var(X)|\sigma^2=\frac{x(1-\pi)}{\pi^2}$
+$E(X)=\frac{x}{\pi}$ und $Var(X)=\frac{x(1-\pi)}{\pi^2}$
 \[\resizebox{0.1\textwidth}{!}{$
 f(x)=\binom{n-1}{k-1}\pi ^x(1-\pi)^{n-x}
 $}
@@ -227,7 +237,7 @@ $}
 
 \subsection{Geometrische Verteilung}
 Modelliert Anzahl Versuche bis A zum erster Erfolg eintritt\\
-$E(X)|\mu=\frac{1}{\pi}$ und $Var(X)|\sigma^2=\frac{1-\pi}{\pi^2}$
+$E(X)=\frac{1}{\pi}$ und $Var(X)=\frac{1-\pi}{\pi^2}$
 \[
 f(x)= \underbrace{(1 - \pi)^{x-1}}_{\text{(x-1)-mal } \overline{A}}
  \cdot \underbrace{\pi}_{\text{1-Mal A}}
@@ -243,11 +253,26 @@ $\mu = 0$ und $\sigma^2 = 1$ ist standardnormalverteilt.
 
 
 \subsection{Poisson-Verteilung}
-Modelliert Anzahl Ereignisse mit festen Zeit/Raumbereich $\rightarrow$ konstante Rate, unabhängig (Anzahl Anrufe Callcenter)
+Modelliert Anzahl Ereignisse mit festen Zeit/Raumbereich $\rightarrow$ konstante Rate, unabhängig (Anzahl Anrufe Callcenter) \\
+$E(X)=Var(X)=\lambda$
 \[
 f(x)=exp(-\lambda)\frac{\lambda^x}{x!}
 \]
 
+\subsection{Symmetrie und Schiefe}
+\begin{itemize}
+\item symmetrisch: \\
+rechts und links annähernd gleich
+
+\item linkssteil(rechtsschief): \\
+Verteilung nach links steiler 
+
+\item rechtssteil(linksschief): \\
+Verteilung nach rechts steiler
+\end{itemize}
+\begin{center}
+\includegraphics[scale=0.2]{Bilder/SymmetrieSchiefe.png}
+\end{center}
 
 %=========================================================================================================================================================================================================================
 
@@ -262,7 +287,7 @@ Z &= \frac{x - \mu}{\sigma}
 
 \subsection{Zentraler Grenzwertsatz}
 \[
-\mu_{\hat{p}}=p, ~SE_{\hat{p}}=\sqrt{\frac{p(1-p)}{n}}
+\mu_{\hat{p}}=p, ~\hat{p}=\frac{x}{n}, ~SE_{\hat{p}}=\sqrt{\frac{p(1-p)}{n}}
 \]
 
 Nett to know:
@@ -283,13 +308,17 @@ Nett to know:
 \]
 
 \subsection{Hypothesentest}
-\[
-H_0 : p = x, H_A: p \neq x
-\]
+\begin{align*}
+& H_0 : p = x, H_A: p \neq x \\
+& H_0 : \mu = x, H_A: \mu \neq x
+\end{align*}
 
-\[
-H_0 : \mu = x, H_A: \mu \neq x
-\]
+\begin{enumerate}
+\item meistens $p=0,5$, sonst $\hat{p}$ berechnen
+\item $SE$ berechnen
+\item $Z=\frac{\hat{p}-p}{SE}$
+\item Falls Wahrscheinlichkeit gefragt: $2 \cdot (1-P(X \leq |Z|)$
+\end{enumerate}
 
 \subsection{t-Verteilung}
 Inferenz für numerische Variablen, bei Stichproben $n < 30$
@@ -300,6 +329,8 @@ Inferenz für numerische Variablen, bei Stichproben $n < 30$
 \item Standardfehler bei Gruppenunterscheidung: $SE = \sqrt{\frac{s_A^2}{n_A} + \frac{s_B^2}{n_B}}$
 \item Teststatistik: $T = \frac{\bar{x} - \text{null value}}{SE}$
 \item Freiheitsgrad (immer kleineres n, z.B. $n_A < n_B$): $df = n - 1$
+\item p-Wert gefragt: $p=2 \cdot (1-P(X \leq |T|)$
+\item Intervall gefragt: $estimate \pm x \cdot SE$
 \end{enumerate}
 
 \subsection{Chi-Quadrat-Test}
@@ -313,6 +344,46 @@ $}
 \item $H_0: \beta_1=0$ zugunsten $H_A: \beta_1 \neq 0$ ablehnen
 \item $\hat{y}= \text{Intercept} + \text{Steigung}x$
 \item $T = \frac{\text{estimate} - \text{null value}}{\text{SE}}$
+\end{enumerate}
+
+%=========================================================================================================================================================================================================================
+
+\section{Beispielaufgaben}
+
+\subsection{Bayes-Aufgabe}
+Gegeben: $P(L) = 0,02$, $P(Pos|L)$, $P(\bar{Pos}|\bar{L})$
+
+\begin{align*}
+& P (\bar{L}) 1 - P(L) \\
+& P (Pos|\bar{L}) = 1 - P(\bar{Pos}|\bar{L}) \\
+& P (L|Pos) = \frac{P(Pos|L)P(L)}{P(Pos|L)P(L)+P(Pos|\bar{L})P(\bar{L})}
+\end{align*}
+
+\subsection{P(X>Z) zu Z}
+\begin{align*}
+& P(X > Z) = x\\
+& \Phi(Z) = P(X \leq Z) = 1- P(X > Z) = x
+\end{align*}
+
+\subsection{$\hat{p}$-Wert ohne $\frac{x}{n}$}
+Gegeben: $p = a$ und wichtig $\hat{p} = Z \cdot SE + p$
+
+\begin{align*}
+& a = 2 \cdot (1 - P(X < |Z|) \\
+\Leftrightarrow & \frac{a}{2} = 1 - P(X < |Z|) \\
+\Leftrightarrow & P(X < |Z|) = 1 - \frac{a}{2} \\
+\Rightarrow & Z = b \Rightarrow \hat{p} = Z \cdot SE +p
+\end{align*}
+
+\subsection{$\chi^2$ bei Hypothesentest}
+Gegeben: meistens Kontigenztafel mit absoluten Häufigkeiten
+
+\begin{enumerate}
+\item Hypothesen aufstellen
+\item Erwartungswerte berechnen: $E_{xy}=\frac{h_{x \cdot} \cdot h_{\cdot y}}{n}$
+\item $\chi^2$ berechnen
+\item Freiheitsgrad $df$ berechnen
+\item $p = 1 - F(\chi^2_{df})$
 \end{enumerate}
 
 %=========================================================================================================================================================================================================================
