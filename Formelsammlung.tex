@@ -173,10 +173,6 @@ E(X) :&=\sum_{x\in T_X} x\cdot P(X=x)
 \end{align*}
 
 \begin{itemize}
-\item X=a mit Wahrscheinlichkeit 1 (determinische ZV)
-\[
-E(X)=a
-\]
 \item Linearität
 \begin{align*}
 E(a\cdot X + b \cdot Y) &= a\cdot E(X) + b \cdot	E(Y) \\
@@ -214,7 +210,7 @@ Var(X)=E(X^2)-(E(X))^2
 Modelliert Experiment mit 2 mögl. Ausgängen
 
 \begin{align*}
-& P(X=1)=f(1) = \pi
+& P(X=1)=f(1) = \pi \\
 & P(X=0)=f(0) = 1 - \pi
 \end{align*}
 
@@ -236,7 +232,7 @@ $}
 
 
 \subsection{Geometrische Verteilung}
-Modelliert Anzahl Versuche bis A zum erster Erfolg eintritt\\
+Modelliert Anzahl Versuche bis A zum 1. Erfolg eintritt\\
 $E(X)=\frac{1}{\pi}$ und $Var(X)=\frac{1-\pi}{\pi^2}$
 \[
 f(x)= \underbrace{(1 - \pi)^{x-1}}_{\text{(x-1)-mal } \overline{A}}
@@ -300,6 +296,7 @@ Nett to know:
 \item Z-Score/Standadisieren
 \item Tabellenwerk
 \item Tabellenwert-(1-Tabellenwert)
+\item Wenn gefragt: $Z=\frac{\hat{p} - p}{SE}$
 \end{enumerate}
 
 \subsection{Intervallschätzung}
@@ -308,10 +305,9 @@ Nett to know:
 \]
 
 \subsection{Hypothesentest}
-\begin{align*}
-& H_0 : p = x, H_A: p \neq x \\
-& H_0 : \mu = x, H_A: \mu \neq x
-\end{align*}
+\[
+H_0 : p,\mu = x, ~H_A: p,\mu \neq x 
+\]
 
 \begin{enumerate}
 \item meistens $p=0,5$, sonst $\hat{p}$ berechnen
@@ -351,11 +347,11 @@ $}
 \section{Beispielaufgaben}
 
 \subsection{Bayes-Aufgabe}
-Gegeben: $P(L) = 0,02$, $P(Pos|L)=0,98$, $P(\bar{Pos}|\bar{L})=0,74$
+Gegeben: $P(L) = 0,02$, $P(Pos|L)=0,98$, $P(\overline{Pos}|\bar{L})=0,74$
 
 \begin{align*}
-& P (\bar{L}) 1 - P(L) \\
-& P (Pos|\bar{L}) = 1 - P(\bar{Pos}|\bar{L}) \\
+& P (\bar{L}) = 1 - P(L) \\
+& P (Pos|\bar{L}) = 1 - P(\overline{Pos}|\bar{L}) \\
 & P (L|Pos) = \frac{P(Pos|L)P(L)}{P(Pos|L)P(L)+P(Pos|\bar{L})P(\bar{L})}
 \end{align*}
 
@@ -369,7 +365,7 @@ Gegeben: $P(L) = 0,02$, $P(Pos|L)=0,98$, $P(\bar{Pos}|\bar{L})=0,74$
 Gegeben: $p = a$ und wichtig $\hat{p} = Z \cdot SE + p$
 
 \begin{align*}
-& a = 2 \cdot (1 - P(X < |Z|) \\
+& a = 2 \cdot (1 - P(X < |Z|)) \\
 \Leftrightarrow & \frac{a}{2} = 1 - P(X < |Z|) \\
 \Leftrightarrow & P(X < |Z|) = 1 - \frac{a}{2} \\
 \Rightarrow & Z = b \Rightarrow \hat{p} = Z \cdot SE +p
@@ -380,9 +376,9 @@ Gegeben: meistens Kontigenztafel mit absoluten Häufigkeiten
 
 \begin{enumerate}
 \item Hypothesen aufstellen
-\item Erwartungswerte berechnen: $E_{xy}=\frac{h_{x \cdot} \cdot h_{\cdot y}}{n}$
+\item Erwartungswerte berechnen: $E_{xy}=\frac{h_{x} \cdot h_{y}}{n}$
 \item $\chi^2$ berechnen
-\item Freiheitsgrad $df$ berechnen
+\item Freiheitsgrad berechnen: $df = (n_x-1)(n_y-1)$
 \item $p = 1 - F(\chi^2_{df})$
 \end{enumerate}
 
